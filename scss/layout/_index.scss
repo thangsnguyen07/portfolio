@@ -1,0 +1,101 @@
+@use "../util/" as u;
+@use "../global/" as *;
+
+@forward "header";
+@forward "hero";
+@forward "components";
+@forward "about";
+@forward "work";
+@forward "projects";
+@forward "other";
+@forward "contact";
+
+body {
+  &.blur {
+    overflow: hidden;
+  }
+}
+
+.main {
+  padding: 0 u.rem(25);
+  min-height: 100vh;
+
+  counter-reset: section-counter;
+
+  @include u.breakpoint(md) {
+    padding: 0px 100px;
+  }
+
+  @include u.breakpoint(xl) {
+    padding: 0px 150px;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  min-height: 70px;
+  text-align: center;
+
+  .social {
+    display: block;
+    width: 100%;
+    max-width: 270px;
+    margin: 0px auto 10px;
+    color: $light-slate;
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0px;
+      margin: 0px;
+      list-style: none;
+
+      a svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    @include u.breakpoint(md) {
+      display: none;
+    }
+  }
+}
+
+.underline {
+  display: inline-block;
+  color: $green;
+
+  &::after {
+    content: "";
+    position: relative;
+    bottom: 6px;
+    width: 0px;
+    height: 0.5px;
+    display: block;
+    background: $green;
+    transition: $transition;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+.overlay {
+  display: none;
+  z-index: 8;
+  position: fixed;
+  inset: 0;
+  transition: $transition;
+  background-color: rgba($color: $navy, $alpha: 0.8);
+
+  &--show {
+    display: block;
+  }
+}

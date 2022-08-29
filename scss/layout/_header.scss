@@ -1,0 +1,178 @@
+@use "../util/" as u;
+@use "../global/" as *;
+
+.header {
+  padding: 0 u.rem(25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height: $nav-height;
+  background-color: rgba(10, 25, 47, 1);
+  color: $lightest-slate;
+  font-family: $font-mono;
+
+  transition: $transition;
+  z-index: 9;
+
+  &.header__scroll {
+    height: $nav-scroll-height;
+    box-shadow: 0 10px 30px -10px $navy-shadow;
+
+    &.header__scroll--hide {
+      transform: translateY(calc($nav-scroll-height * -1));
+    }
+
+    .header__scroll--show {
+      transform: translateY(0px);
+    }
+  }
+
+  @include u.breakpoint(md) {
+    padding: 0 40px;
+  }
+
+  @include u.breakpoint(lg) {
+    padding: 0 50px;
+  }
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  &__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+    }
+  }
+
+  &__menu {
+    @include u.breakpoint(md) {
+      display: none;
+    }
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+
+    ol {
+      display: flex;
+      align-items: center;
+      padding: 0px;
+      margin: 0px;
+      list-style: none;
+
+      li {
+        margin: 0px 5px;
+        position: relative;
+        counter-increment: item;
+        font-size: $fz-xs;
+
+        a {
+          padding: 10px;
+
+          &::before {
+            content: "0" counter(item) ".";
+            margin-right: 5px;
+            color: $green;
+            font-size: $fz-xxs;
+            text-align: right;
+          }
+        }
+      }
+    }
+
+    @include u.breakpoint-down(sm) {
+      display: none;
+    }
+  }
+
+  // Side bar
+  &__sidebar {
+    z-index: 9;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: min(75vw, 400px);
+    background-color: $light-navy;
+    box-shadow: -10px 0px 30px -15px $navy-shadow;
+    transform: translateX(100%);
+    transition: $transition;
+
+    &--show {
+      transform: translateX(0);
+    }
+  }
+}
+
+// Hamberger Menu Icon
+#nav-icon {
+  z-index: 10;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+
+  & span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: $green;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: 0.25s ease-in-out;
+
+    &:nth-child(1) {
+      top: 5px;
+    }
+
+    &:nth-child(2),
+    &:nth-child(3) {
+      top: 15px;
+    }
+
+    &:nth-child(4) {
+      top: 25px;
+    }
+  }
+
+  &.open span {
+    &:nth-child(1) {
+      top: 18px;
+      width: 0%;
+      left: 50%;
+    }
+
+    &:nth-child(2) {
+      transform: rotate(45deg);
+    }
+
+    &:nth-child(3) {
+      transform: rotate(-45deg);
+    }
+
+    &:nth-child(4) {
+      top: 18px;
+      width: 0%;
+      left: 50%;
+    }
+  }
+}

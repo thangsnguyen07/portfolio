@@ -1,0 +1,151 @@
+@use "../global/" as *;
+@use "../util/" as u;
+
+.outline-btn {
+  color: $green;
+  background-color: transparent;
+  border: 1px solid $green;
+  border-radius: $border-radius;
+  padding: 1.25rem 1.75rem;
+  font-size: $fz-sm;
+  font-family: $font-mono;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: $transition;
+  margin-top: 50px;
+
+  &:hover {
+    background-color: $green-tint;
+  }
+}
+
+.numbered-heading {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 10px 0px 40px;
+  width: 100%;
+  font-size: clamp(26px, 5vw, 32px);
+  white-space: nowrap;
+
+  &::before {
+    position: relative;
+    counter-increment: section-counter;
+    content: "0" counter(section-counter) ".";
+    margin-right: 10px;
+    color: $green;
+    font-family: $font-mono;
+    font-size: clamp($fz-md, 3vw, $fz-xl);
+    font-weight: 400;
+
+    margin-bottom: 4px;
+    margin-right: 5px;
+  }
+
+  &::after {
+    content: "";
+    width: 300px;
+    height: 0.5px;
+    margin-left: 10px;
+    background-color: $lightest-navy;
+  }
+
+  &.overline {
+    display: block;
+    margin-bottom: 20px;
+    color: $green;
+    font-family: $font-mono;
+    font-size: $fz-md;
+    font-weight: 400;
+
+    &::before {
+      bottom: 0px;
+      font-size: $fz-sm;
+    }
+  }
+}
+
+// Side
+.side {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  color: $light-slate;
+  width: 40px;
+  z-index: 10;
+
+  @include u.breakpoint(md) {
+    display: block;
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 90px;
+    margin: 20px auto 0px;
+    background-color: $light-slate;
+  }
+
+  &.left {
+    left: 20px;
+    right: auto;
+
+    @include u.breakpoint(lg) {
+      left: 40px;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0px;
+      padding: 0px;
+      list-style: none;
+
+      li {
+        display: list-item;
+
+        a {
+          padding: 10px;
+
+          &:hover,
+          &:focus {
+            transform: translateY(-3px);
+          }
+        }
+      }
+    }
+  }
+
+  &.right {
+    left: auto;
+    right: 20px;
+
+    @include u.breakpoint(lg) {
+      right: 40px;
+    }
+
+    .email {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+
+      a {
+        padding: 10px;
+        font-family: $font-mono;
+        font-size: $fz-xxs;
+        line-height: $fz-lg;
+        letter-spacing: 0.1em;
+        writing-mode: vertical-rl;
+
+        &:hover,
+        &:focus {
+          transform: translateY(-3px);
+        }
+      }
+    }
+  }
+}

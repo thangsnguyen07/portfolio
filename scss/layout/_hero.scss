@@ -1,0 +1,34 @@
+@use "../util/" as u;
+@use "../global/" as *;
+
+.greeting {
+  color: $green;
+  font-family: $font-mono;
+  font-weight: 400;
+  margin: 0 0 u.rem(20) u.rem(2);
+  font-size: clamp(u.rem(14), 5vw, u.rem(16));
+
+  @include u.breakpoint(sm) {
+    margin: 0 0 urem(30) u.rem(4);
+  }
+}
+
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 0;
+
+  h2 {
+    margin-top: 10px;
+    color: $slate;
+    line-height: 1.3;
+  }
+}
+
+.bio {
+  margin: 20px 0px 0px;
+  max-width: 540px;
+}

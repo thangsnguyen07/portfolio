@@ -1,0 +1,63 @@
+@use "../util/" as u;
+@use "variables" as *;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  line-height: 1.1;
+  margin-top: 0;
+  color: $lightest-slate;
+}
+
+h1 {
+  font-size: clamp(u.rem(28), u.rem(16) + 2vw, u.rem(40));
+  // font-size: clamp(28px, 16px + 2vw, 40px);
+  // font-size: clamp(1.75rem, 1rem + 2vw, 2.5rem);
+}
+
+h2 {
+  font-size: clamp(u.rem(22), u.rem(14) + 1.5vw, u.rem(36));
+  // font-size: clamp(22px, 14px + 1.5vw, 36px);
+  // font-size: clamp(1.375rem, 0.875rem + 1.5vw, 2.25rem);
+  margin: 0px 0px 10px;
+  font-weight: 600;
+  color: $lightest-slate;
+  line-height: 1.1;
+}
+
+p {
+  margin-top: 0;
+  // font-size: calc(15px + 0.390625vw);
+
+  &:last-child,
+  &:last-of-type {
+    margin: 0px;
+  }
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  text-decoration-skip-ink: auto;
+  color: inherit;
+  position: relative;
+  transition: $transition;
+
+  &:hover {
+    color: $green;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.big-heading {
+  margin: 0;
+  font-size: clamp(u.rem(36), 8vw, u.rem(80));
+}

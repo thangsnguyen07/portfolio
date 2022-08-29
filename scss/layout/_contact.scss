@@ -1,0 +1,18 @@
+@use "../util/" as u;
+@use "../global/" as *;
+
+.contact {
+  max-width: 600px;
+  margin: 0px auto 50px;
+  text-align: center;
+
+  &__title {
+    font-size: clamp(32px, 5vw, 60px);
+  }
+
+  p {
+    @include u.breakpoint-down(xs) {
+      font-size: 17px;
+    }
+  }
+}

@@ -1,0 +1,289 @@
+@use "../global/" as *;
+@use "../util/" as u;
+
+.projects {
+  &__featured {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+
+    &__card {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 10px;
+
+      &:not(:last-of-type) {
+        margin-bottom: 30px;
+
+        @include u.breakpoint(sm) {
+          margin-bottom: 70px;
+        }
+
+        @include u.breakpoint(md) {
+          margin-bottom: 100px;
+        }
+      }
+
+      .project-content {
+        position: relative;
+        padding: 25px 25px 20px;
+        // grid-area: 1 / 1 / -1 / 9;
+
+        grid-column: 1 / -1;
+        grid-row: 1 / -1;
+
+        // *Ipad
+        @include u.breakpoint(md) {
+          padding: 0;
+          grid-column: 1 / 9;
+        }
+
+        @include u.breakpoint(lg) {
+          grid-column: 1 / 7;
+        }
+
+        .project-overline {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          margin: 10px 0px;
+          color: $green;
+          font-family: $font-mono;
+          font-size: $fz-xs;
+          font-weight: 400;
+        }
+
+        .project-title {
+          color: $white;
+          font-size: clamp(24px, 5vw, 28px);
+          margin: 0px 0px 10px;
+
+          @include u.breakpoint(md) {
+            color: $lightest-slate;
+            margin: 0px 0px 20px;
+          }
+        }
+
+        .project-tech-list {
+          display: flex;
+          flex-wrap: wrap;
+          position: relative;
+          z-index: 2;
+
+          margin: 10px 0px;
+          padding: 0px;
+          list-style: none;
+
+          @include u.breakpoint(md) {
+            margin: 25px 0px 10px;
+          }
+
+          li {
+            margin: 0px 10px 5px 0px;
+            color: $light-slate;
+            font-family: $font-mono;
+            font-size: $fz-xs;
+            white-space: nowrap;
+
+            @include u.breakpoint(md) {
+              margin: 0px 20px 5px 0px;
+            }
+          }
+        }
+
+        .project-description {
+          position: relative;
+          padding: 20px 0;
+          transition: $transition;
+          box-shadow: none;
+          background-color: transparent;
+
+          border-radius: $border-radius;
+          color: $light-slate;
+          font-size: $fz-lg;
+          z-index: 2;
+
+          @include u.breakpoint(md) {
+            padding: 25px;
+            box-shadow: 0 10px 30px -15px $navy-shadow;
+            background-color: $light-navy;
+          }
+
+          // TODO: Replace this
+          // & > p {
+          //   font-size: 15px;
+          // }
+
+          &:hover {
+            @include u.breakpoint(md) {
+              box-shadow: 0 20px 30px -15px $navy-shadow;
+            }
+          }
+        }
+
+        .project-links {
+          display: flex;
+          align-items: center;
+          position: relative;
+          margin-top: 10px;
+          margin-left: -10px;
+          color: $lightest-slate;
+
+          a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+
+            position: relative;
+            z-index: 2;
+
+            svg {
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+      }
+
+      .project-image {
+        position: relative;
+        // box-shadow: 0 10px 30px -15px $navy-shadow;
+        // grid-area: 1 / 6 / -1 / -1;
+        z-index: 1;
+        opacity: 0.25;
+
+        // *Mobile
+        
+        grid-column: 1 / -1;
+        grid-row: 1 / -1;
+        
+
+        @include u.breakpoint(md) {
+          grid-column: 6 / -1;
+          opacity: 1;
+        }
+
+        a {
+          width: 100%;
+          height: 100%;
+          max-width: 700px;
+          background-color: $green;
+          border-radius: $border-radius;
+          transform: translateY(-50%);
+          position: relative;
+          top: 50%;
+          transition: $transition;
+          overflow: hidden;
+
+          box-shadow: 0 10px 30px -15px $navy-shadow;
+
+          @include u.breakpoint(md) {
+            height: auto;
+            aspect-ratio: 16/9;
+          }
+
+          &:hover {
+            background: transparent;
+            outline: 0px;
+
+            & > .image-wrapper {
+              filter: none;
+            }
+          }
+
+          &::before {
+            content: "";
+            position: absolute;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            inset: 0px;
+            z-index: 3;
+            background-color: $navy;
+            mix-blend-mode: screen;
+          }
+
+          .image-wrapper {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: $transition;
+            filter: grayscale(100%) contrast(1) brightness(50%);
+            mix-blend-mode: multiply;
+            border-radius: inherit;
+
+            @include u.breakpoint(md) {
+              filter: grayscale(100%) contrast(1) brightness(75%);
+            }
+
+            &:hover {
+              background: transparent;
+            }
+
+            img {
+              position: absolute;
+              inset: 0;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              border-radius: $border-radius;
+            }
+          }
+        }
+      }
+
+      &:nth-of-type(2n + 1) {
+        .project-content {
+          // grid-area: 1 / 5 / -1 / -1;
+          grid-column: 1 / -1;
+          grid-row: 1 / -1;
+
+          @include u.breakpoint(md) {
+            text-align: right;
+            grid-column: 5 / -1;
+          }
+
+          @include u.breakpoint(lg) {
+            grid-column: 7 / -1;
+          }
+
+          .project-tech-list {
+            justify-content: flex-start;
+
+            @include u.breakpoint(md) {
+              justify-content: flex-end;
+            }
+
+            li {
+              margin: 0px 10px 5px 0px;
+
+              @include u.breakpoint(md) {
+                margin: 0px 0px 5px 20px;
+              }
+            }
+          }
+
+          .project-links {
+            justify-content: flex-start;
+
+            @include u.breakpoint(md) {
+              justify-content: flex-end;
+              margin-left: 0px;
+              margin-right: -10px;
+            }
+          }
+        }
+
+        .project-image {
+          grid-column: 1 / -1;
+
+          @include u.breakpoint(md) {
+            grid-column: 1 / 8;
+          }
+        }
+      }
+    }
+  }
+}
