@@ -295,14 +295,59 @@ a svg {
   top: 0;
   bottom: 0;
   right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: min(75vw, 400px);
+  height: 110vh;
   background-color: #112240;
   box-shadow: -10px 0px 30px -15px rgba(2, 12, 27, 0.7);
   transform: translateX(100%);
   transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  padding: 50px 10px;
 }
 .nav__sidebar--show {
   transform: translateX(0);
+}
+.nav__sidebar nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  color: #ccd6f6;
+  font-family: "SF Mono", "monospace";
+  text-align: center;
+}
+.nav__sidebar nav ol {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  width: 100%;
+}
+.nav__sidebar nav ol li {
+  position: relative;
+  margin: 0px auto 10px;
+  counter-increment: item;
+  font-size: clamp(14px, 4vw, 18px);
+}
+.nav__sidebar nav ol li::before {
+  display: block;
+  content: "0" counter(item) ".";
+  margin-bottom: 5px;
+  color: #64ffda;
+  font-size: 14px;
+}
+.nav__sidebar nav ol li a {
+  display: inline-block;
+  text-decoration: none;
+  -webkit-text-decoration-skip: ink;
+          text-decoration-skip-ink: auto;
+  color: inherit;
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  width: 100%;
+  padding: 3px 20px 20px;
 }
 
 #nav-icon {

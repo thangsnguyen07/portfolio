@@ -1,12 +1,13 @@
-var overlay = document.getElementById("overlay");
-var sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
+const sidebar = document.getElementById("sidebar");
 
 document.getElementById("nav-icon").addEventListener("click", toggleSidebar);
 overlay.addEventListener("click", toggleSidebar);
+sidebar.querySelector("nav ol").addEventListener("click", toggleSidebar);
 
 function toggleSidebar() {
-  var menu = document.getElementById("nav-icon");
-  var body = document.querySelector("body");
+  const menu = document.getElementById("nav-icon");
+  const body = document.querySelector("body");
 
   body.classList.toggle("blur");
   menu.classList.toggle("open");
@@ -15,7 +16,7 @@ function toggleSidebar() {
 }
 
 const header = document.getElementById("header");
-var scrollBefore = 0;
+let scrollBefore = 0;
 window.addEventListener("scroll", function () {
   const scrolled = window.scrollY;
 
